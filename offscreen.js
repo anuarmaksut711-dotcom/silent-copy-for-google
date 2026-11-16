@@ -1,0 +1,1 @@
+chrome.runtime.onMessage.addListener((n,c,o)=>{if(n.destination!=="offscreen"||c.id!==chrome.runtime.id)return;const e=document.getElementById("clipboard");let t=!1;try{e.value=n.text,e.select(),t=document.execCommand("copy")}catch{t=!1}finally{e.value=""}o({ok:t})});

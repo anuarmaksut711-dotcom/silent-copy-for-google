@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Google Code Cleaner",
+  "description": "Тихо копирует код из ответов Google и Gemini в буфер обмена и удаляет комментарии.",
+  "version": "1.1.0",
+  "minimum_chrome_version": "116",
+  "permissions": ["storage", "clipboardWrite", "offscreen"],
+  "background": { "service_worker": "background.js" },
+  "action": {
+    "default_title": "Google Code Cleaner — настройки",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [{
+    "matches": [
+      "https://www.google.com/*", "https://google.com/*",
+      "https://www.google.kz/*", "https://google.kz/*",
+      "https://www.google.ru/*", "https://google.ru/*",
+      "https://gemini.google.com/*"
+    ],
+    "js": ["extractor.js", "content.js"],
+    "run_at": "document_idle"
+  }]
+}
